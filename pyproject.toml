@@ -51,7 +51,7 @@ combine_as_imports = true
 skip = [".venv", ".git", ".cache"]
 
 [tool.taskipy.tasks]
-precommit = "pre-commit run install"
+precommit = "pre-commit install"
 lint = "pre-commit run --all-files"
 black = "black ."
 isort = "isort ."
