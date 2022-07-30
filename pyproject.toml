@@ -35,6 +35,7 @@ black = "^22.3.0"
 isort = "^5.10.1"
 pyright = "^1.1.264"
 pre-commit = "^2.18.1"
+taskipy = "^1.10.2"
 
 [tool.black]
 line-length = 119
@@ -48,6 +49,13 @@ case_sensitive = true
 combine_as_imports = true
 skip = [".venv", ".git"]
 
+[tool.taskipy.tasks]
+precommit = "pre-commit run install"
+lint = "pre-commit run --all-files"
+black = "black ."
+isort = "isort ."
+pyright = "pyright ."
+flake8 = "flake8 ."
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
