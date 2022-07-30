@@ -1,0 +1,13 @@
+[flake8]
+max_line_length=120
+application-import-names=xdisplayselect
+exclude=.venv,.git
+ignore=
+    ANN002, # *args
+    ANN003, # **kwargs
+    ANN101, # self param annotation
+    ANN102, # cls param annotation
+    ANN204, # return type annotation for special methods
+
+    E731,  # Allow inline lambdas
+    MD033, # Allow inline HTML in markdown
