@@ -39,6 +39,7 @@ taskipy = "^1.10.2"
 
 [tool.black]
 line-length = 119
+extend-exclude = "^/.cache"
 
 [tool.isort]
 profile = "black"
@@ -47,7 +48,7 @@ atomic = true
 order_by_type = false
 case_sensitive = true
 combine_as_imports = true
-skip = [".venv", ".git"]
+skip = [".venv", ".git", ".cache"]
 
 [tool.taskipy.tasks]
 precommit = "pre-commit run install"
