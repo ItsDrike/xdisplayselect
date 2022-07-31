@@ -46,7 +46,7 @@ class MonitorConfig:
             json.dump(stored_configs, fp)
 
     @classmethod
-    def load_config(cls, monitors: list[ConnectedMonitor], config_file: Path) -> Self:
+    def load_config(cls, monitors: Iterable[ConnectedMonitor], config_file: Path) -> Self:
         with config_file.open("r") as fp:
             contents = fp.read()
 
@@ -55,7 +55,7 @@ class MonitorConfig:
 
         for config in stored_configs:
             if config["monitors"] == monitor_conf:
-                return cls(monitors, config["cmd_args"])
+                return cls(list(monitors), config["cmd_args"])
         raise ValueError("Requested monitor setup isn't known yet")
 
     @staticmethod
