@@ -3,10 +3,15 @@ from __future__ import annotations
 import subprocess
 from collections.abc import Iterator
 from dataclasses import dataclass
-from typing import Literal, Optional, Protocol, TYPE_CHECKING
+from typing import Literal, Optional, Protocol, TYPE_CHECKING, TypedDict
 
 if TYPE_CHECKING:
     from typing_extensions import Self
+
+
+class MonitorJson(TypedDict):
+    name: str
+    resolution: list[int]
 
 
 class ConnectedMonitor(Protocol):
@@ -14,6 +19,9 @@ class ConnectedMonitor(Protocol):
     primary: bool
     connected: Literal[True]
     resolution: tuple[int, int]
+
+    def as_json(self) -> MonitorJson:
+        ...
 
 
 class DisconnectedMonitor(Protocol):
@@ -29,6 +37,11 @@ class Monitor:
     primary: bool
     connected: bool
     resolution: Optional[tuple[int, int]]
+
+    def as_json(self) -> MonitorJson:
+        if self.resolution is None:
+            raise ValueError("Monitors without resolution can't be serialized into json.")
+        return MonitorJson(name=self.name, resolution=list(self.resolution))
 
     @staticmethod
     def _iter_monitor_configs(xrandr_output: str) -> Iterator[str]:
