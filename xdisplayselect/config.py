@@ -23,6 +23,7 @@ class Config:
     restore: bool
     cache: bool
     cache_file: Path
+    skip_confirm: bool
 
     def __post_init__(self) -> None:
         """Perform some data sanitation and initial tasks."""
@@ -71,6 +72,12 @@ class Config:
             action="store_true",
         )
         parser.add_argument(
+            "-n",
+            "--no-confirm",
+            help="Don't ask for confirmation before running xrandr command.",
+            action="store_true",
+        )
+        parser.add_argument(
             "-f",
             "--cache-file",
             help="Path to the JSON cache file. (default: %(default)s)",
@@ -85,4 +92,5 @@ class Config:
             restore=args.restore,
             cache=not args.no_cache,
             cache_file=args.cache_file,
+            skip_confirm=args.no_confirm,
         )

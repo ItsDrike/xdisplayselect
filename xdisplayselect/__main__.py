@@ -29,7 +29,7 @@ def main(conf: Config) -> None:
     for disconnected_mon in disconnected_monitors:
         xrandr_cmd.extend(["--output", disconnected_mon.name, "--off"])
 
-    if prompt_confirm(f"Run {' '.join(xrandr_cmd)}"):
+    if conf.skip_confirm or prompt_confirm(f"Run {' '.join(xrandr_cmd)}"):
         subprocess.run(xrandr_cmd)
 
 
