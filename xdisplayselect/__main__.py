@@ -1,8 +1,10 @@
+import subprocess
 from typing import cast
 
 from xdisplayselect.config import Config
 from xdisplayselect.monitor import ConnectedMonitor, DisconnectedMonitor, Monitor
 from xdisplayselect.monitor_config import MonitorConfig
+from xdisplayselect.user_input import prompt_confirm
 
 
 def main(conf: Config) -> None:
@@ -27,7 +29,8 @@ def main(conf: Config) -> None:
     for disconnected_mon in disconnected_monitors:
         xargs_cmd.extend(["--output", disconnected_mon.name, "--off"])
 
-    print(f"Would run: {xargs_cmd}")
+    if prompt_confirm(f"Run {' '.join(xargs_cmd)}"):
+        subprocess.run(xargs_cmd)
 
 
 def cli() -> None:
