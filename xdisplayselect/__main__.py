@@ -23,14 +23,14 @@ def main(conf: Config) -> None:
         print("Skipping cache restoring, prompting for monitor setup")
         monitor_conf = MonitorConfig.prompt_for_setup(connected_monitors)
 
-    xargs_cmd = monitor_conf.cmd_args
+    xrandr_cmd = monitor_conf.cmd_args
 
     # Also explicitly mark other disconnected monitors as off
     for disconnected_mon in disconnected_monitors:
-        xargs_cmd.extend(["--output", disconnected_mon.name, "--off"])
+        xrandr_cmd.extend(["--output", disconnected_mon.name, "--off"])
 
-    if prompt_confirm(f"Run {' '.join(xargs_cmd)}"):
-        subprocess.run(xargs_cmd)
+    if prompt_confirm(f"Run {' '.join(xrandr_cmd)}"):
+        subprocess.run(xrandr_cmd)
 
 
 def cli() -> None:
