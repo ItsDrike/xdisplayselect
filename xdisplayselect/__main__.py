@@ -30,6 +30,10 @@ def main(conf: Config) -> None:
     print(f"Would run: {xargs_cmd}")
 
 
-if __name__ == "__main__":
+def cli() -> None:
     conf = Config.parse()
     main(conf)
+
+
+if __name__ == "__main__":
+    cli()

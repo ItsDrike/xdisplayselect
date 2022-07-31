@@ -40,7 +40,7 @@ pre-commit = "^2.18.1"
 taskipy = "^1.10.2"
 
 [tool.poetry.scripts]
-xdisplayselect = 'xdisplayselect.__main__:main'
+xdisplayselect = 'xdisplayselect.__main__:cli'
 
 
 [tool.black]
