@@ -39,6 +39,10 @@ pyright = "^1.1.264"
 pre-commit = "^2.18.1"
 taskipy = "^1.10.2"
 
+[tool.poetry.scripts]
+xdisplayselect = 'xdisplayselect.__main__:main'
+
+
 [tool.black]
 line-length = 119
 extend-exclude = "^/.cache"
