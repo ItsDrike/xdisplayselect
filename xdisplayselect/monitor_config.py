@@ -2,10 +2,9 @@ from __future__ import annotations
 
 import json
 from collections.abc import Iterable
-from contextlib import suppress
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Optional, TYPE_CHECKING, TypedDict
+from typing import TYPE_CHECKING, TypedDict
 
 from xdisplayselect.monitor import ConnectedMonitor, MonitorJson
 from xdisplayselect.user_input import prompt_confirm, prompt_list
