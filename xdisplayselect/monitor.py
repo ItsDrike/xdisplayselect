@@ -37,7 +37,7 @@ class Monitor:
 
     def as_json(self) -> MonitorJson:
         if self.resolution is None:
-            raise ValueError("Monitors without resolution can't be serialized into json.")
+            raise ValueError("Disconnected monitors (without resolution) can't be serialized into json.")
         return MonitorJson(name=self.name, resolution=list(self.resolution))
 
     @staticmethod
