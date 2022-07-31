@@ -16,7 +16,6 @@ class MonitorJson(TypedDict):
 
 class ConnectedMonitor(Protocol):
     name: str
-    primary: bool
     connected: Literal[True]
     resolution: tuple[int, int]
 
@@ -26,7 +25,6 @@ class ConnectedMonitor(Protocol):
 
 class DisconnectedMonitor(Protocol):
     name: str
-    primary: bool
     connected: Literal[False]
     resolution: None
 
@@ -34,7 +32,6 @@ class DisconnectedMonitor(Protocol):
 @dataclass(frozen=True)
 class Monitor:
     name: str
-    primary: bool
     connected: bool
     resolution: Optional[tuple[int, int]]
 
@@ -63,16 +60,14 @@ class Monitor:
         name = words[0]
         connected = words[1] == "connected"
         if connected:
-            primary = words[2] == "primary"
             _resolution_line = lines[1].strip(" ")
             _str_resolution = _resolution_line.split(" ")[0]
             _str_resolutions = _str_resolution.split("x")
             resolution = (int(_str_resolutions[0]), int(_str_resolutions[1]))
         else:
-            primary = False
             resolution = None
 
-        return cls(name, primary, connected, resolution)
+        return cls(name, connected, resolution)
 
     @classmethod
     def get_xrandr_monitors(cls) -> list[Self]:
