@@ -548,7 +548,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = ">3.9,<4"
-content-hash = "b85590e744357e20154af6be409b1dc3bfd017db22b2a9f1bc5a065bb15ad8b0"
+content-hash = "86ef69edb717de625cfca6b1375e0c2e4ce0384e250577a5d412848fe46c9dd9"
 
 [metadata.files]
 ansicon = [
